@@ -47,25 +47,23 @@ const helpers = {
   }
 };
 
-const covid19ImpactEstimator = (data) => {
-  return {
-    data: data,
-    impact: helpers.impact(
-      data.reportedCases,
-      data.timeToElapse,
-      data.totalHospitalBeds,
-      data.region.avgDailyIncomeInUSD,
-      data.region.avgDailyIncomePopulation
-    ),
-    severeImpact: helpers.severeImpact(
-      data.reportedCases,
-      data.timeToElapse,
-      data.totalHospitalBeds,
-      data.region.avgDailyIncomeInUSD,
-      data.region.avgDailyIncomePopulation
-    )
-  };
-};
+const covid19ImpactEstimator = (data) => ({
+  data: data,
+  impact: helpers.impact(
+    data.reportedCases,
+    data.timeToElapse,
+    data.totalHospitalBeds,
+    data.region.avgDailyIncomeInUSD,
+    data.region.avgDailyIncomePopulation
+  ),
+  severeImpact: helpers.severeImpact(
+    data.reportedCases,
+    data.timeToElapse,
+    data.totalHospitalBeds,
+    data.region.avgDailyIncomeInUSD,
+    data.region.avgDailyIncomePopulation
+  )
+});
 
 // export default covid19ImpactEstimator;
 module.exports = covid19ImpactEstimator;
