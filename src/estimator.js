@@ -17,7 +17,7 @@ const helpers = {
     const casesForICUByRequestedTime = Math.trunc((5 / 100) * infectionsByReqTime);
     const casesForVentilatorsByRequestedTime = Math.trunc((2 / 100) * infectionsByReqTime);
     const dollars = Math.trunc(
-      (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) * timeToElapse
+      (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) / timeToElapse
     );
 
     return {
@@ -48,7 +48,7 @@ const helpers = {
     const casesForICUByRequestedTime = Math.trunc((5 / 100) * infectionsByReqTime);
     const casesForVentilatorsByRequestedTime = Math.trunc((2 / 100) * infectionsByReqTime);
     const dollars = Math.trunc(
-      (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) * timeToElapse
+      (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) / timeToElapse
     );
 
     return {
