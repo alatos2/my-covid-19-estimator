@@ -1,8 +1,16 @@
 /* eslint-disable object-shorthand */
 const helpers = {
-  impact(reportedCases, timeToElapse, totalHospitalBeds, avgDailyIncome, avgDailyIncomePop) {
+  impact(
+    periodType,
+    reportedCases,
+    timeToElapse,
+    totalHospitalBeds,
+    avgDailyIncome,
+    avgDailyIncomePop
+  ) {
     const currentlyInfected = reportedCases * 10;
-    const factor = Math.trunc(timeToElapse / 3);
+    // const factor = Math.trunc(timeToElapse / 3);
+    const factor = Math.trunc(this.convertToDays(periodType, timeToElapse) / 3);
     const infectionsByReqTime = currentlyInfected * (2 ** factor);
     const severeCasesByRequestedTime = Math.trunc((15 / 100) * infectionsByReqTime);
     const hospitalBeds = Math.trunc((totalHospitalBeds * (35 / 100)) - severeCasesByRequestedTime);
@@ -23,9 +31,17 @@ const helpers = {
     };
   },
 
-  severeImpact(reportedCases, timeToElapse, totalHospitalBeds, avgDailyIncome, avgDailyIncomePop) {
+  severeImpact(
+    periodType,
+    reportedCases,
+    timeToElapse,
+    totalHospitalBeds,
+    avgDailyIncome,
+    avgDailyIncomePop
+  ) {
     const currentlyInfected = reportedCases * 50;
-    const factor = Math.trunc(timeToElapse / 3);
+    // const factor = Math.trunc(timeToElapse / 3);
+    const factor = Math.trunc(this.convertToDays(periodType, timeToElapse) / 3);
     const infectionsByReqTime = currentlyInfected * (2 ** factor);
     const severeCasesByReqTime = Math.trunc((15 / 100) * infectionsByReqTime);
     const hospitalBeds = Math.trunc((totalHospitalBeds * (35 / 100)) - severeCasesByReqTime);
@@ -44,12 +60,28 @@ const helpers = {
       casesForVentilatorsByRequestedTime: casesForVentilatorsByRequestedTime,
       dollarsInFlight: dollars
     };
+  },
+
+  convertToDays(periodType, timeToElapse) {
+    const type = periodType.toLowerCase();
+    const time = Number(timeToElapse);
+    switch (type) {
+      case 'days':
+        return time;
+      case 'weeks':
+        return time * 7;
+      case 'months':
+        return time * 30;
+      default:
+        return time;
+    }
   }
 };
 
 const covid19ImpactEstimator = (data) => ({
   data: data,
   impact: helpers.impact(
+    data.periodType,
     data.reportedCases,
     data.timeToElapse,
     data.totalHospitalBeds,
@@ -57,6 +89,7 @@ const covid19ImpactEstimator = (data) => ({
     data.region.avgDailyIncomePopulation
   ),
   severeImpact: helpers.severeImpact(
+    data.periodType,
     data.reportedCases,
     data.timeToElapse,
     data.totalHospitalBeds,
