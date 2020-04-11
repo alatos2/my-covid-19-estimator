@@ -2,13 +2,13 @@
 const helpers = {
   impact(reportedCases, timeToElapse, totalHospitalBeds, avgDailyIncome, avgDailyIncomePop) {
     const currentlyInfected = reportedCases * 10;
-    const factor = Math.floor(timeToElapse / 3);
+    const factor = Math.trunc(timeToElapse / 3);
     const infectionsByReqTime = currentlyInfected * (2 ** factor);
-    const severeCasesByRequestedTime = Math.floor((15 / 100) * infectionsByReqTime);
-    const hospitalBeds = Math.floor((totalHospitalBeds * (35 / 100)) - severeCasesByRequestedTime);
-    const casesForICUByRequestedTime = Math.floor((5 / 100) * infectionsByReqTime);
-    const casesForVentilatorsByRequestedTime = Math.floor((2 / 100) * infectionsByReqTime);
-    const dollars = Math.floor(
+    const severeCasesByRequestedTime = Math.trunc((15 / 100) * infectionsByReqTime);
+    const hospitalBeds = Math.trunc((totalHospitalBeds * (35 / 100)) - severeCasesByRequestedTime);
+    const casesForICUByRequestedTime = Math.trunc((5 / 100) * infectionsByReqTime);
+    const casesForVentilatorsByRequestedTime = Math.trunc((2 / 100) * infectionsByReqTime);
+    const dollars = Math.trunc(
       (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) * timeToElapse
     );
 
@@ -25,13 +25,13 @@ const helpers = {
 
   severeImpact(reportedCases, timeToElapse, totalHospitalBeds, avgDailyIncome, avgDailyIncomePop) {
     const currentlyInfected = reportedCases * 50;
-    const factor = Math.floor(timeToElapse / 3);
+    const factor = Math.trunc(timeToElapse / 3);
     const infectionsByReqTime = currentlyInfected * (2 ** factor);
-    const severeCasesByReqTime = Math.floor((15 / 100) * infectionsByReqTime);
-    const hospitalBeds = Math.floor((totalHospitalBeds * (35 / 100)) - severeCasesByReqTime);
-    const casesForICUByRequestedTime = Math.floor((5 / 100) * infectionsByReqTime);
-    const casesForVentilatorsByRequestedTime = Math.floor((2 / 100) * infectionsByReqTime);
-    const dollars = Math.floor(
+    const severeCasesByReqTime = Math.trunc((15 / 100) * infectionsByReqTime);
+    const hospitalBeds = Math.trunc((totalHospitalBeds * (35 / 100)) - severeCasesByReqTime);
+    const casesForICUByRequestedTime = Math.trunc((5 / 100) * infectionsByReqTime);
+    const casesForVentilatorsByRequestedTime = Math.trunc((2 / 100) * infectionsByReqTime);
+    const dollars = Math.trunc(
       (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) * timeToElapse
     );
 
