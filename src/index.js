@@ -3,6 +3,10 @@ const route = require('./route');
 
 const app = express();
 
+app.get('/', (req, res) => {
+  res.send('Estimator Working');
+});
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
