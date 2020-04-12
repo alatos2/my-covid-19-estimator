@@ -12,6 +12,7 @@
     "heroku-postbuild": "babel src --out-dir dist --copy-files"
   },
   "dependencies": {
+    "@babel/runtime": "^7.9.2",
     "express": "^4.17.1",
     "express-xml-bodyparser": "^0.3.0",
     "on-covid-19": "^0.1.3",
