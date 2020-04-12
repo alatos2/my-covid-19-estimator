@@ -1,6 +1,3 @@
-// import express from 'express';
-// import covid19ImpactEstimator from './estimator';
-
 const express = require('express');
 const covid19ImpactEstimator = require('./estimator');
 
@@ -28,7 +25,7 @@ route.post('/on-covid-19', (req, res) => {
     totalHospitalBeds: totalHospitalBeds
   };
 
-  res.status(201).json(covid19ImpactEstimator(inputData));
+  res.status(200).json(covid19ImpactEstimator(inputData));
 });
 
 route.post('/on-covid-19/json', (req, res) => {
@@ -51,7 +48,7 @@ route.post('/on-covid-19/json', (req, res) => {
     totalHospitalBeds: totalHospitalBeds
   };
 
-  res.status(201).json(covid19ImpactEstimator(inputData));
+  res.status(200).json(covid19ImpactEstimator(inputData));
 });
 
 // export default route;

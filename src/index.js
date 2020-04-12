@@ -1,5 +1,3 @@
-// import express from 'express';
-// import route from './route';
 const express = require('express');
 const route = require('./route');
 
