@@ -16,8 +16,14 @@ const helpers = {
     const hospitalBeds = Math.trunc((totalHospitalBeds * (35 / 100)) - severeCasesByRequestedTime);
     const casesForICUByRequestedTime = Math.trunc((5 / 100) * infectionsByReqTime);
     const casesForVentilatorsByRequestedTime = Math.trunc((2 / 100) * infectionsByReqTime);
+    // const dollars = Math.trunc(
+    //   (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) / timeToElapse
+    // );
     const dollars = Math.trunc(
-      (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) / timeToElapse
+      (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) / this.convertToDays(
+        periodType,
+        timeToElapse
+      )
     );
 
     return {
@@ -47,8 +53,14 @@ const helpers = {
     const hospitalBeds = Math.trunc((totalHospitalBeds * (35 / 100)) - severeCasesByReqTime);
     const casesForICUByRequestedTime = Math.trunc((5 / 100) * infectionsByReqTime);
     const casesForVentilatorsByRequestedTime = Math.trunc((2 / 100) * infectionsByReqTime);
+    // const dollars = Math.trunc(
+    //   (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) / timeToElapse
+    // );
     const dollars = Math.trunc(
-      (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) / timeToElapse
+      (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) / this.convertToDays(
+        periodType,
+        timeToElapse
+      )
     );
 
     return {
