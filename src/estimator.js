@@ -29,7 +29,7 @@ const helpers = {
       hospitalBedsByRequestedTime: hospitalBeds,
       casesForICUByRequestedTime: casesForICUByRequestedTime,
       casesForVentilatorsByRequestedTime: casesForVentilatorsByRequestedTime,
-      dollarsInFlight: dollars
+      dollarsInFlight: dollars * 1
     };
   },
 
@@ -62,7 +62,7 @@ const helpers = {
       hospitalBedsByRequestedTime: hospitalBeds,
       casesForICUByRequestedTime: casesForICUByRequestedTime,
       casesForVentilatorsByRequestedTime: casesForVentilatorsByRequestedTime,
-      dollarsInFlight: dollars
+      dollarsInFlight: dollars * 1
     };
   },
 
