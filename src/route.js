@@ -7,7 +7,6 @@ const covid19ImpactEstimator = require('./estimator');
 const route = express.Router();
 
 /* eslint-disable object-shorthand */
-
 route.post('/', (req, res) => {
   res.set('Content-Type', 'application/json');
   const {
