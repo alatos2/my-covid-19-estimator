@@ -28,7 +28,7 @@ route.post('/', (req, res) => {
     totalHospitalBeds: totalHospitalBeds
   };
 
-  res.status(200).json(covid19ImpactEstimator(inputData));
+  res.status(200).send(covid19ImpactEstimator(inputData));
 });
 
 route.post('/json', (req, res) => {
@@ -52,7 +52,8 @@ route.post('/json', (req, res) => {
     totalHospitalBeds: totalHospitalBeds
   };
 
-  res.status(200).json(covid19ImpactEstimator(inputData));
+  // res.status(200).json(covid19ImpactEstimator(inputData));
+  res.status(200).send(covid19ImpactEstimator(inputData));
 });
 
 
