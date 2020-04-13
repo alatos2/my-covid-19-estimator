@@ -67,19 +67,35 @@ const helpers = {
   },
 
   convertToDays(periodType, timeToElapse) {
-    const type = periodType.toLowerCase();
-    const time = Number(timeToElapse);
-    switch (type) {
-      case 'days':
-        return time;
-      case 'weeks':
-        return time * 7;
-      case 'months':
-        return time * 30;
+    let days = timeToElapse;
+    switch (periodType) {
       default:
-        return time;
+        days = timeToElapse;
+        break;
+      case 'weeks':
+        days = timeToElapse * 7;
+        break;
+      case 'months':
+        days = timeToElapse * 30;
+        break;
     }
+    return days;
   }
+
+//   convertToDays(periodType, timeToElapse) {
+//     const type = periodType.toLowerCase();
+//     const time = timeToElapse;
+//     switch (type) {
+//       case 'days':
+//         return time;
+//       case 'weeks':
+//         return time * 7;
+//       case 'months':
+//         return time * 30;
+//       default:
+//         return time;
+//     }
+//   }
 };
 
 const covid19ImpactEstimator = (data) => ({
