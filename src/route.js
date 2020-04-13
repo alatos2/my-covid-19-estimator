@@ -9,6 +9,7 @@ const route = express.Router();
 /* eslint-disable object-shorthand */
 
 route.post('/', (req, res) => {
+  res.set('Content-Type', 'application/json');
   const {
     name, avgAge, avgDailyIncomeInUSD, avgDailyIncomePopulation, periodType,
     timeToElapse, reportedCases, population, totalHospitalBeds

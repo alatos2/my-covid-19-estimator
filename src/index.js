@@ -11,7 +11,7 @@ app.use(morgan(':method   :url  :status  :response-time ms', {
 }));
 
 app.get('/', (req, res) => {
-  res.send('Hi! Welcome to Alabi Tosin\'s Estimator');
+  res.send('Hi! Welcome to Alabi Tosin\'s Covid-19 Estimator');
 });
 
 app.use(express.urlencoded({ extended: false }));
