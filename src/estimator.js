@@ -67,8 +67,7 @@ const helpers = {
   },
 
   convertToDays(periodType, timeToElapse) {
-    // const type = periodType.toLowerCase();
-    const type = periodType;
+    const type = periodType.toLowerCase();
     const time = Number(timeToElapse);
     switch (type) {
       case 'days':
