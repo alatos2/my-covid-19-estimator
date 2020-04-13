@@ -6,7 +6,11 @@ const route = require('./route');
 
 const app = express();
 
-app.use(morgan(':method   :url  :status  :response-time ms', {
+// app.use(morgan(':method   :url  :status  :response-time ms', {
+//   stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+// }));
+
+app.use(morgan(':method\t\t:url\t\t:status\t\t:response-time[digits] ms', {
   stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 }));
 

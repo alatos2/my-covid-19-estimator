@@ -1,6 +1,7 @@
 const express = require('express');
 const o2x = require('object-to-xml');
 const path = require('path');
+const os = require('os');
 const fs = require('fs');
 const covid19ImpactEstimator = require('./estimator');
 
