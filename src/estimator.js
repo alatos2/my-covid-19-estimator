@@ -16,11 +16,14 @@ const helpers = {
     const casesForICUByRequestedTime = Math.trunc((5 / 100) * infectionsByReqTime);
     const casesForVentilatorsByRequestedTime = Math.trunc((2 / 100) * infectionsByReqTime);
     const dollars = Math.floor(
-      (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) / this.convertToDays(
-        periodType,
-        timeToElapse
-      )
+      (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) / timeToElapse
     );
+    // const dollars = Math.floor(
+    //   (infectionsByReqTime * avgDailyIncomePop * avgDailyIncome) / this.convertToDays(
+    //     periodType,
+    //     timeToElapse
+    //   )
+    // );
 
     return {
       currentlyInfected: currentlyInfected,
@@ -29,7 +32,7 @@ const helpers = {
       hospitalBedsByRequestedTime: hospitalBeds,
       casesForICUByRequestedTime: casesForICUByRequestedTime,
       casesForVentilatorsByRequestedTime: casesForVentilatorsByRequestedTime,
-      dollarsInFlight: dollars * 1
+      dollarsInFlight: dollars
     };
   },
 
@@ -62,7 +65,7 @@ const helpers = {
       hospitalBedsByRequestedTime: hospitalBeds,
       casesForICUByRequestedTime: casesForICUByRequestedTime,
       casesForVentilatorsByRequestedTime: casesForVentilatorsByRequestedTime,
-      dollarsInFlight: dollars * 1
+      dollarsInFlight: dollars
     };
   },
 
