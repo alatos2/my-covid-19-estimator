@@ -1,0 +1,3 @@
+GET		/logs		200		05ms
+GET		/logs		200		05ms
+GET		/logs		200		05ms
