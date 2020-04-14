@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-undef */
 /* eslint-disable object-shorthand */
 const getDays = (period, periodType) => {
   let days = periodType;
@@ -24,12 +26,24 @@ const availableBeds = (totalBeds, patients) => {
   return hospitalBeds;
 };
 
-const covid19ImpactEstimator = (data) => {
-  const currentlyInfected = data.reportedCases * 10;
+const covid19ImpactEstimator = ({
+  region = {
+    name: 'Africa',
+    avgAge: '19.7',
+    avgDailyIncomeInUSD: '5',
+    avgDailyIncomePopulation: '0.71'
+  },
+  periodType = 'days',
+  timeToElapse = 28,
+  reportedCases = 254,
+  population = 66622705,
+  totalHospitalBeds = 1380614
+}) => {
+  const currentlyInfected = reportedCases * 10;
 
-  const currentlyInfectedSevere = data.reportedCases * 50;
+  const currentlyInfectedSevere = reportedCases * 50;
 
-  const factor = Math.trunc(getDays(data.timeToElapse, data.periodType) / 3);
+  const factor = Math.trunc(getDays(timeToElapse, periodType) / 3);
 
   const infectionsByRequestedTime = Math.trunc(currentlyInfected * (2 ** factor));
 
@@ -38,10 +52,10 @@ const covid19ImpactEstimator = (data) => {
   const severeCasesByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.15);
   const severeCasesByRequestedTimeSevere = Math.trunc(infectionsByRequestedTimeSevere * 0.15);
   const hospitalBedsByRequestedTime = Math.trunc(
-    availableBeds(data.totalHospitalBeds, severeCasesByRequestedTime)
+    availableBeds(totalHospitalBeds, severeCasesByRequestedTime)
   );
   const hospitalBedsByRequestedTimeSevere = Math.trunc(
-    availableBeds(data.totalHospitalBeds, severeCasesByRequestedTimeSevere)
+    availableBeds(totalHospitalBeds, severeCasesByRequestedTimeSevere)
   );
   const casesForICUByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.05);
   const casesForICUByRequestedTimeSevere = Math.trunc(infectionsByRequestedTimeSevere * 0.05);
@@ -50,19 +64,26 @@ const covid19ImpactEstimator = (data) => {
   const dollarsInFlight = Math.trunc(
     (
       infectionsByRequestedTime
-      * data.region.avgDailyIncomePopulation
-      * data.region.avgDailyIncomeInUSD
+      * region.avgDailyIncomePopulation
+      * region.avgDailyIncomeInUSD
     ) / getDays(
-      data.timeToElapse, data.periodType
+      timeToElapse, periodType
     )
   );
   const dollarsInFlightSevere = Math.trunc((
     infectionsByRequestedTimeSevere
-    * data.region.avgDailyIncomePopulation
-    * data.region.avgDailyIncomeInUSD) / getDays(data.timeToElapse, data.periodType));
+    * region.avgDailyIncomePopulation
+    * region.avgDailyIncomeInUSD) / getDays(timeToElapse, periodType));
 
   const outputData = {
-    data: data,
+    data: {
+      region,
+      periodType,
+      timeToElapse,
+      reportedCases,
+      population,
+      totalHospitalBeds
+    },
     impact: {
       currentlyInfected,
       infectionsByRequestedTime,
@@ -85,6 +106,5 @@ const covid19ImpactEstimator = (data) => {
   };
   return outputData;
 };
-
 
 module.exports = covid19ImpactEstimator;
