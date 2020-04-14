@@ -1,7 +1,8 @@
 const express = require('express');
-const morgan = require('morgan');
-const fs = require('fs');
-const path = require('path');
+// const morgan = require('morgan');
+// const fs = require('fs');
+// const path = require('path');
+const requestLogger = require('./logger');
 const route = require('./route');
 
 const app = express();
@@ -10,9 +11,11 @@ const app = express();
 //   stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 // }));
 
-app.use(morgan(':method\t\t:url\t\t:status\t\t:response-time[digits] ms', {
-  stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
-}));
+// app.use(morgan(':method\t\t:url\t\t:status\t\t:response-time[digits] ms', {
+//   stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+// }));
+
+app.use(requestLogger);
 
 app.get('/', (req, res) => {
   res.send('Hi! Welcome to Alabi Tosin\'s Covid-19 Estimator');

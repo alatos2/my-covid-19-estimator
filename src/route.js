@@ -84,11 +84,22 @@ route.post('/xml', (req, res) => {
   }));
 });
 
-route.get('/logs', (req, res) => {
-  const filePath = path.join(__dirname, 'access.log');
-  const contents = fs.readFileSync(filePath);
-  res.send(contents);
+// route.get('/logs', (req, res) => {
+//   const filePath = path.join(__dirname, 'access.log');
+//   const contents = fs.readFileSync(filePath);
+//   res.send(contents);
+// });
+
+
+route.get('/logs', async (req, res) => {
+  fs.readFile(path.join(__dirname, 'access.log'), (err, content) => {
+    if (err) {
+      // console.log(err);
+      return;
+    }
+    res.header('Content-Type', 'text/plain; charset=UTF-8');
+    res.status(200).send(content);
+  });
 });
 
-// export default route;
 module.exports = route;
